@@ -1,7 +1,7 @@
 const MongoClient = require('mongodb').MongoClient,
   ObjectID = require('mongodb').ObjectID
 
-const url = 'mongodb://localhost:27017',
+const url = 'mongodb://root:password@srv-captain--tto-db:27017',
   dbName = 'timetracker-one'
 
 let database,
