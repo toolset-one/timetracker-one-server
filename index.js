@@ -41,4 +41,5 @@ socketsInit({
 })
 
 
-this.server = http.createServer((req, res) => res.end('Hello!')).listen(8081)  
+this.server = http.createServer((req, res) => res.end('Timetracker.One Server')).listen(process.env.PORT || 8080)
+console.log( 'Server Port: ', process.env.PORT)  
