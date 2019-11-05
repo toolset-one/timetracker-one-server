@@ -9,7 +9,8 @@ let database,
   hooksInited = []
 
 MongoClient.connect(url, {
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 }, (err, client) => {
   database = client.db(dbName)
 
