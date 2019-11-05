@@ -1,5 +1,9 @@
 process.stdout.write('\033c')
 
+if( process.env.ENVIROMENT === 'develop') {
+  require('dotenv').config()
+}
+
 const http = require('http'),
   wsServer = require('ws').Server,
   authInit = require('./libs/auth.js'),
