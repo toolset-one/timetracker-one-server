@@ -31,15 +31,14 @@ const http = require('http'),
     inviteMember
   }
 
+const server = http.createServer((req, res) => res.end('Timetracker.One Server')).listen(process.env.PORT || 8080)
+console.log( 'Server Port: ', process.env.PORT || 8080)  
+
 const wss = new wsServer({
-  port: 8080
+  server
 })
 
 socketsInit({
   wss,
   ACTIONS
 })
-
-
-this.server = http.createServer((req, res) => res.end('Timetracker.One Server')).listen(process.env.PORT || 8080)
-console.log( 'Server Port: ', process.env.PORT)  
