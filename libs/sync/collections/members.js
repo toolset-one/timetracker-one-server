@@ -12,18 +12,15 @@ const STANDARD_ATTRIBUTES = [
 
 
 const ATTRIBUTES = [
-	'language',
-	'stopwatchEntryId',
-	'stopwatchStartTime',
-	'firstWeekDay',
-	'dateFormat',
-	'timeFormat'
+	'name',
+	'user',
+	'team'
 ]
 exports.ATTRIBUTES = ATTRIBUTES
 
 
 const DB_SEARCH = {
-	_id: '$USER'
+	team: '$TEAM'
 }
 exports.DB_SEARCH = DB_SEARCH
 
@@ -48,13 +45,11 @@ exports.shouldBeSynced = async (obj, user) =>
 			}
 		})
 
-		console.log('############')
-		console.log('############')
-		console.log('############')
-		console.log('############')
-		console.log(obj)
-
-		if(obj.id != user.id) {
+		if(obj.user != user.id) {
+			resolve(false)
+		}
+				
+		if(!user.teams[obj.team]) {
 			resolve(false)
 		}
 
@@ -65,21 +60,15 @@ exports.shouldBeSynced = async (obj, user) =>
 
 
 exports.shouldBeSyncedOut = (ws, socketsTeams, newObj) => {
+	if(socketsTeams[newObj.team]) {
+		return (socketsTeams[newObj.team]).filter(client => client.clientId != ws.clientId)
+	}
 
-	let socketClients = []
-
-	Object.keys(ws.userData.teams).forEach(teamId => {
-		if(socketsTeams[teamId]) {
-			socketsTeams[teamId].forEach(socketClient => {
-				console.log(socketClient.clientId, socketClient.userData.id, ws.userData.id)
-				if(socketClient.clientId != ws.clientId && socketClient.userData.id === ws.userData.id) {
-					socketClients.push(socketClient)
-				}
-			})
-		}
-	})
-
-	console.log(socketClients.length)
-
-	return socketClients
+	return []
 }
+
+
+exports.adjustDataIn = async (obj, user) =>
+	new Promise(async (resolve, reject) => {
+		resolve(obj)
+	})

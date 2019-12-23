@@ -93,7 +93,11 @@ exports.signIn = async (ws, sockets, { promiseId, email, password }) =>
 					settings: { 
 							lastId: null,
 							date: new Date(2000, 0, 0)
-						}
+					},
+					members: { 
+							lastId: null,
+							date: new Date(2000, 0, 0)
+					}
 				}
 			}
 		}).catch(err => {
