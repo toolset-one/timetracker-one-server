@@ -14,7 +14,7 @@
   "author": "Benjamin Kowalski",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.3.2",
     "sendgrid": "^5.2.3",
